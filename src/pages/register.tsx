@@ -3,15 +3,16 @@ import { Form, Formik } from 'formik';
 import { Box, Button, Center, FormControl } from '@chakra-ui/react';
 import { Wrapper } from '../components/Wrapper';
 import { InputField } from '../components/inputField';
-import { useMutation } from 'urql';
 import { useRegisterMutation } from '../generated/graphql';
 import { toErrorMap } from '../utils/toErrorMap';
+import { useRouter } from 'next/router';
 
 interface registerProps {
 
 }
  
 const Register: React.FC<registerProps> = ({}) => {
+    const router = useRouter();
     const [, register] = useRegisterMutation();
     return (
         <Wrapper variant='small'>
@@ -21,6 +22,9 @@ const Register: React.FC<registerProps> = ({}) => {
                     const response = await register(values);
                     if (response.data?.register.errors) {
                         setErrors(toErrorMap(response.data.register.errors))
+                    } else if (response.data?.register.user) {
+                        //worked
+                        router.push('/');
                     }
                 }}
             >
@@ -51,7 +55,6 @@ const Register: React.FC<registerProps> = ({}) => {
                                         </Button>
                                     </Center>
                                 </Box>
-                            {/* <FormErrorMessage>{form.errors.name}</FormErrorMessage> */}
                         </FormControl>
                     </Form>
                 )}
