@@ -1,4 +1,4 @@
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/react';
+import { ThemeProvider, CSSReset } from '@chakra-ui/react';
 import { Provider, createClient } from 'urql';
 
 
