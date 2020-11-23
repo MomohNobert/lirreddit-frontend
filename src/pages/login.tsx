@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { withUrqlClient } from 'next-urql';
 import { createUrqlClient } from '../utils/createUrqlClient';
  
-const Login: React.FC<{}> = ({}) => {
+const Login: React.FC<{}> = () => {
     const router = useRouter();
     const [, login] = useLoginMutation();
     return (

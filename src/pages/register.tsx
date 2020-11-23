@@ -13,7 +13,7 @@ interface registerProps {
 
 }
  
-const Register: React.FC<registerProps> = ({}) => {
+const Register: React.FC<registerProps> = () => {
     const router = useRouter();
     const [, register] = useRegisterMutation();
     return (
