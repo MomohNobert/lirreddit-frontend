@@ -9,7 +9,7 @@ const Index = () => {
   return (
   <>
     <NavBar />
-  {!data ? <div>loading...</div> : data.posts.map(post => <div key={post.id}>{post.title}</div>)}
+    {!data ? <div>loading...</div> : data.posts.map(post => <div key={post.id}>{post.title}</div>)}
   </>
 )}
 
