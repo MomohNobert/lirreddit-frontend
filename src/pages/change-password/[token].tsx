@@ -5,8 +5,6 @@ import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import { InputField } from '../../components/inputField';
 import { Wrapper } from '../../components/Wrapper';
-import { toErrorMap } from '../../utils/toErrorMap';
-import login from '../login';
 
 export const ChangePassword: NextPage<{token: string}> = ({ token }) => {
     const router = useRouter();
@@ -15,7 +13,7 @@ export const ChangePassword: NextPage<{token: string}> = ({ token }) => {
         <Wrapper variant='small'>
         <Formik 
             initialValues={{ newPassword: '' }}
-            onSubmit={async (values, {setErrors}) => {
+            onSubmit={async (values, { setErrors }) => {
                 // const response = await login(values);
                 // if (response.data?.login.errors) {
                 //     setErrors(toErrorMap(response.data.login.errors))
