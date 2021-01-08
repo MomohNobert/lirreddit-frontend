@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 import { withUrqlClient } from 'next-urql';
 import React from 'react'
 import { InputField } from '../components/inputField';
-import { Wrapper } from '../components/Wrapper'
 import { useCreatePostMutation } from '../generated/graphql';
 import { createUrqlClient } from '../utils/createUrqlClient';
 import { useRouter } from 'next/router'
@@ -14,7 +13,7 @@ const CreatePost: React.FC<{}> = () => {
     const router = useRouter();
     const [, createPost] = useCreatePostMutation();
     return (
-        <Layout>
+        <Layout variant="small">
                 <Formik 
                     initialValues={{title: "", text: ""}}
                     onSubmit={async (values) => {
