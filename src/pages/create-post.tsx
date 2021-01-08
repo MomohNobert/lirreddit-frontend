@@ -7,53 +7,54 @@ import { Wrapper } from '../components/Wrapper'
 import { useCreatePostMutation } from '../generated/graphql';
 import { createUrqlClient } from '../utils/createUrqlClient';
 import { useRouter } from 'next/router'
+import Layout from '../components/Layout';
 
 
 const CreatePost: React.FC<{}> = () => {
     const router = useRouter();
     const [, createPost] = useCreatePostMutation();
     return (
-        <Wrapper variant='small'>
-            <Formik 
-                initialValues={{title: "", text: ""}}
-                onSubmit={async (values) => {
-                    await createPost({input: values});
-                    router.push('/');
+        <Layout>
+                <Formik 
+                    initialValues={{title: "", text: ""}}
+                    onSubmit={async (values) => {
+                        await createPost({input: values});
+                        router.push('/');
 
-                }}
-            >
-                {({ isSubmitting }) => (
-                    <Form>
-                        <FormControl>
-                                <InputField 
-                                    name="title" 
-                                    placeholder="title" 
-                                    label="Title" 
-                                />
-                                <Box mt={4}>
+                    }}
+                >
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <FormControl>
                                     <InputField 
-                                        name="text"
-                                        textarea 
-                                        placeholder="text..." 
-                                        label="Body" 
+                                        name="title" 
+                                        placeholder="title" 
+                                        label="Title" 
                                     />
-                                </Box>
-                                <Box mt={6}>
-                                    <Center>
-                                        <Button 
-                                            type="submit" 
-                                            colorScheme="teal"
-                                            isLoading={isSubmitting}
-                                        >
-                                            CREATE POST
-                                        </Button>
-                                    </Center>
-                                </Box>
-                        </FormControl>
-                    </Form>
-                )}
-            </Formik>
-        </Wrapper>
+                                    <Box mt={4}>
+                                        <InputField 
+                                            name="text"
+                                            textarea 
+                                            placeholder="text..." 
+                                            label="Body" 
+                                        />
+                                    </Box>
+                                    <Box mt={6}>
+                                        <Center>
+                                            <Button 
+                                                type="submit" 
+                                                colorScheme="teal"
+                                                isLoading={isSubmitting}
+                                            >
+                                                CREATE POST
+                                            </Button>
+                                        </Center>
+                                    </Box>
+                            </FormControl>
+                        </Form>
+                    )}
+                </Formik>
+        </Layout>
     )
 }
 
