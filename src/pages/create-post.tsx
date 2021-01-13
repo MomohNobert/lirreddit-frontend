@@ -3,14 +3,21 @@ import { Formik, Form } from 'formik';
 import { withUrqlClient } from 'next-urql';
 import React from 'react'
 import { InputField } from '../components/inputField';
-import { useCreatePostMutation } from '../generated/graphql';
+import { useCreatePostMutation, useMeQuery } from '../generated/graphql';
 import { createUrqlClient } from '../utils/createUrqlClient';
 import { useRouter } from 'next/router'
 import Layout from '../components/Layout';
+import { useEffect } from 'react';
 
 
 const CreatePost: React.FC<{}> = () => {
+    const [{ data, fetching }] = useMeQuery();
     const router = useRouter();
+    useEffect(() => {
+        if (!fetching && !data?.me) {
+            router.replace("/login")
+        }
+    })
     const [, createPost] = useCreatePostMutation();
     return (
         <Layout variant="small">
